@@ -17,5 +17,9 @@ def ceasar_encode(text, key):
 
     return cipher
 
+def ceasar_decode(text, key):
+    return ceasar_encode(text, 26-key)
 
-print(ceasar_encode("test", 1))
+
+print(ceasar_decode("KPZJBZZPVUMVYBT", 7))
+print(ceasar_encode("ilovetocode", 8))
