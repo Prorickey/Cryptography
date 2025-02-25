@@ -11,7 +11,7 @@ def multiplicative_encode(text, key):
 
     cipher = ""
     for n in pre_key_list:
-        num = (n * key) % 26
+        num = (n * key) % len(alphabet)
 
         cipher += list(alphabet)[num]
 
@@ -24,9 +24,11 @@ def mod_inverse(a, m):
             return x
     return None
 
+print(mod_inverse(17, 54))
+
 def multiplicative_decode(text, key):
-    return multiplicative_encode(text, mod_inverse(key, 26))
+    return multiplicative_encode(text, mod_inverse(key, len(alphabet)))
 
-
-print(multiplicative_decode("jmafvlahhmu", 3))
-print(multiplicative_decode("OZCGWUNDEQCPW", 7))
+cipher = multiplicative_encode("hellothismessageisciphered", 343)
+print(cipher)
+print(multiplicative_decode(cipher, 343))
