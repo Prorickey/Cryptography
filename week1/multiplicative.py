@@ -1,3 +1,5 @@
+from ..utilities import mod_inverse
+
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 l_map = {}
 for i in range(len(alphabet)):
@@ -17,17 +19,10 @@ def multiplicative_encode(text, key):
 
     return cipher
 
-def mod_inverse(a, m):
-    a = a % m
-    for x in range(1, m):
-        if (a * x) % m == 1:
-            return x
-    return None
-
-print(mod_inverse(17, 54))
 
 def multiplicative_decode(text, key):
     return multiplicative_encode(text, mod_inverse(key, len(alphabet)))
+
 
 cipher = multiplicative_encode("hellothismessageisciphered", 343)
 print(cipher)

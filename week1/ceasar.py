@@ -1,22 +1,26 @@
-ALPHABET = "abcdefghijklmnopqrstuvwxyz"
+from ..utilities import text_block
 
 
-def ceasar_encode(text, key):
-    pre_key_list = []
-    for letter in list(text):
-        pre_key_list.append(ALPHABET.find(letter.lower()))
-
+def caesar_encode(text, key, decrypt=False, LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
     cipher = ""
-    for n in pre_key_list:
-        num = (n + key) % 26
+    if decrypt:
+        key = 26 - key
+    for l in text:
+        if LETTERS.find(l.upper()) == -1:
+            continue
 
-        cipher += list(ALPHABET)[num]
+        num = (LETTERS.index(l.upper()) + key) % 26
 
-    return cipher
+        cipher += LETTERS[num]
+
+    if decrypt:
+        return cipher.lower()
+    else:
+        return text_block(cipher.upper())
 
 
 def ceasar_decode(text, key):
-    return ceasar_encode(text, 26-key)
+    return caesar_encode(text, 26-key)
 
 
 # text = "thismessagewillsufficeformypurpose"
