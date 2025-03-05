@@ -1,4 +1,8 @@
-from ..utilities import mod_inverse
+def mod_inverse(a, m):
+	for i in range(1, m):
+		if (a * i) % m == 1:
+			return i
+	return None
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 l_map = {}
@@ -9,7 +13,8 @@ for i in range(len(alphabet)):
 def multiplicative_encode(text, key):
     pre_key_list = []
     for letter in list(text):
-        pre_key_list.append(l_map[letter.lower()])
+        if letter.lower() in l_map:
+            pre_key_list.append(l_map[letter.lower()])
 
     cipher = ""
     for n in pre_key_list:

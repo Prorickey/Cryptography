@@ -2,3 +2,11 @@
 .venv/
 cmake-build-debug/
 class.py
+build/
+.vscode/
+.DS_Store
+week3/build/
+week3/dist/
+week3/*.egg-info/
+
+*__pycache__

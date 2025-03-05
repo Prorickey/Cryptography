@@ -1,6 +1,8 @@
 //
 // Created by Trevor Bedson on 2/19/25.
 //
+#define PY_SSIZE_T_CLEAN
+#include "Python.h"
 
 // Extended Euclidean Algorithm
 
@@ -31,4 +33,40 @@ EEAValues eea(const int n, const int mod) {
 
     const EEAValues values = { x1, y1 };
     return values;
+}
+
+static PyObject *
+eea_extended_euclidean_alg(PyObject *self, PyObject *args)
+{
+    const int n, mod;
+
+    if (!PyArg_ParseTuple(args, "ii", &n, &mod)) return NULL;
+
+    EEAValues res = eea(n, mod);
+    PyObject* tuple = PyTuple_New(2);
+
+    PyTuple_SetItem(tuple, 0, PyLong_FromLong(res.y));  
+    PyTuple_SetItem(tuple, 1, PyLong_FromLong(res.x)); 
+
+    return tuple;
+}
+
+// Define module methods
+static PyMethodDef MyMethods[] = {
+    {"extended_euclidean_alg", eea_extended_euclidean_alg, METH_VARARGS, "Returns a tuple (1, 2)"},
+    {NULL, NULL, 0, NULL}
+};
+
+// Define module
+static struct PyModuleDef mymodule = {
+    PyModuleDef_HEAD_INIT,
+    "eea",  // Module name
+    NULL,         // Documentation
+    -1,           // Module state
+    MyMethods
+};
+
+// Initialize module
+PyMODINIT_FUNC PyInit_eea(void) {
+    return PyModule_Create(&mymodule);
 }

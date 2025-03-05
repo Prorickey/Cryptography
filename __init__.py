@@ -1,1 +1,1 @@
-from .utilities import gcd, mod_inverse
+from .utilities import gcd, mod_inverse, text_block

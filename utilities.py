@@ -1,3 +1,7 @@
+from week1.ceasar import caesar_encode, ceasar_decode
+from week1.multiplicative import multiplicative_decode, multiplicative_encode
+
+
 def text_clean(text, LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
 	ret = ""
 	LETTERS += LETTERS.upper()
@@ -34,3 +38,9 @@ def mod_inverse(a, m):
 		if (a * i) % m == 1:
 			return i
 	return None
+
+def affine(text, km, ka, decrypt=False, letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
+	if decrypt:
+		return ceasar_decode(multiplicative_decode(text, km), ka)
+	else:
+		return caesar_encode(multiplicative_encode(text, km), ka)

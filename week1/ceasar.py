@@ -1,5 +1,14 @@
-from ..utilities import text_block
+def text_block(t, n=5):
+	f = ""
+	i = 0
+	for l in t:
+		if i % n == 0 and i != 0:
+			f += " "
 
+		f += l
+		i += 1
+
+	return f
 
 def caesar_encode(text, key, decrypt=False, LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
     cipher = ""
