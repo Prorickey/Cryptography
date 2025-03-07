@@ -4,31 +4,20 @@ def mod_inverse(a, m):
 			return i
 	return None
 
-alphabet = "abcdefghijklmnopqrstuvwxyz"
-l_map = {}
-for i in range(len(alphabet)):
-    l_map[alphabet[i]] = i
+
+def multiplicative_encode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
+	cipher = ""
+	for l in text.lower():
+		if letters.find(l) == -1:
+			continue
+		print(letters.find(l))
+		num = (letters.find(l) * key) % len(letters)
+
+		cipher += letters[num]
+
+	return cipher
 
 
-def multiplicative_encode(text, key):
-    pre_key_list = []
-    for letter in list(text):
-        if letter.lower() in l_map:
-            pre_key_list.append(l_map[letter.lower()])
+def multiplicative_decode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
+	return multiplicative_encode(text, mod_inverse(key, len(letters)), letters)
 
-    cipher = ""
-    for n in pre_key_list:
-        num = (n * key) % len(alphabet)
-
-        cipher += list(alphabet)[num]
-
-    return cipher
-
-
-def multiplicative_decode(text, key):
-    return multiplicative_encode(text, mod_inverse(key, len(alphabet)))
-
-
-cipher = multiplicative_encode("hellothismessageisciphered", 343)
-print(cipher)
-print(multiplicative_decode(cipher, 343))

@@ -40,6 +40,3 @@ def ceasar_decode(text, key):
 #         res.append(r)
 #
 # print(len(res))
-
-print(ceasar_decode("KPZJBZZPVUMVYBT", 7))
-print(ceasar_decode("LZWQUGEWTQKWS", 18))
