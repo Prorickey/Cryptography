@@ -74,11 +74,3 @@ def rail_fence_decode(ciphertext, n):
                 rn -= 1
 
     return plaintext
-
-
-print(rail_fence_encode("challenge", 3))
-
-test = "FWYREILEL"
-print(rail_fence_decode(test, 3))
-print(rail_fence_decode(test, 4))
-

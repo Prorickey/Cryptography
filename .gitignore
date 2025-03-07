@@ -5,8 +5,9 @@ class.py
 build/
 .vscode/
 .DS_Store
-week3/build/
-week3/dist/
-week3/*.egg-info/
+
+*build/
+*dist/
+*.egg-info/
 
 *__pycache__

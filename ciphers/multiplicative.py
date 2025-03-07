@@ -1,8 +1,4 @@
-def mod_inverse(a, m):
-	for i in range(1, m):
-		if (a * i) % m == 1:
-			return i
-	return None
+from utilities import mod_inverse
 
 
 def multiplicative_encode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
@@ -10,7 +6,6 @@ def multiplicative_encode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
 	for l in text.lower():
 		if letters.find(l) == -1:
 			continue
-		print(letters.find(l))
 		num = (letters.find(l) * key) % len(letters)
 
 		cipher += letters[num]
@@ -20,4 +15,3 @@ def multiplicative_encode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
 
 def multiplicative_decode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
 	return multiplicative_encode(text, mod_inverse(key, len(letters)), letters)
-
