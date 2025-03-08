@@ -1,12 +1,20 @@
-def substitution_encode(text, sub, letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
-    encrypted_text = ""
-    for char in text.upper():
-        encrypted_text += sub[letters.find(char)]
-    return encrypted_text
+from utilities import text_block
 
+def substitution(text, sub, decrypt=False, letters="abcdefghijklmnopqrstuvwxyz"):
+    """
+    Encrypts or decrypts a text using the substitution cipher.
+    """
+    
+    text = text.lower()
+    newtext = ""
+    if decrypt:
+        for char in text.upper():
+            newtext += letters[sub.find(char)]
+    else:
+        for char in text.upper():
+            newtext += sub[letters.find(char)]
 
-def substitution_decode(text, sub, letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
-    decrypted_text = ""
-    for char in text.upper():
-        decrypted_text += letters[sub.find(char)]
-    return decrypted_text
+    if decrypt:
+        return newtext
+    else:
+        return text_block(newtext.upper())

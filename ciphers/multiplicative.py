@@ -1,8 +1,15 @@
-from utilities import mod_inverse
+from utilities import mod_inverse, text_block
 
+def multiplicative(text, key, decrypt=False, letters="abcdefghijklmnopqrstuvwxyz"):
+	"""
+	Encrypts or decrypts a text using the multiplicative cipher.
+	"""
 
-def multiplicative_encode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
-	cipher = ""
+	text = text.lower()
+	newtext = ""
+	if decrypt:
+		key = mod_inverse(key, len(letters))
+
 	for l in text.lower():
 		if letters.find(l) == -1:
 			continue
@@ -10,8 +17,7 @@ def multiplicative_encode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
 
 		cipher += letters[num]
 
-	return cipher
-
-
-def multiplicative_decode(text, key, letters="abcdefghijklmnopqrstuvwxyz"):
-	return multiplicative_encode(text, mod_inverse(key, len(letters)), letters)
+	if decrypt:
+		return newtext
+	else:
+		return text_block(newtext.upper())

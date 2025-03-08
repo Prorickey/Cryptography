@@ -1,7 +1,11 @@
-from ciphers import caesar, multiplicative_decode, multiplicative_encode
+from ciphers import caesar, multiplicative
 
 def affine(text, km, ka, decrypt=False, letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
+	"""
+	Encrypts or decrypts a text using the affine cipher.
+	"""
+	
 	if decrypt:
-		return multiplicative_decode(caesar(text, ka, True, letters), km, letters.lower()).lower()
+		return multiplicative(caesar(text, ka, True, letters), km, True, letters.lower()).lower()
 	else:
-		return caesar(multiplicative_encode(text, km, letters.lower()), ka, False, letters).upper()
+		return caesar(multiplicative(text, km, False, letters.lower()), ka, False, letters).upper()

@@ -9,7 +9,7 @@ def text_clean(text, LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'):
 	return ret.upper()
 
 
-def text_block(t, n=5):
+def text_block_old(t, n=5):
 	f = ""
 	i = 0
 	for l in t:
