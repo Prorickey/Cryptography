@@ -32,7 +32,7 @@ char* text_block(char* text, int block_size) {
 }
 
 static PyObject* mod_text_block(PyObject *self, PyObject *args, PyObject *kwargs) {
-    const char *text;
+    char *text;
     int block_size = 5;
 
     static char *kwlist[] = {"text", "block_size", NULL};
@@ -62,7 +62,7 @@ static PyObject* mod_text_block(PyObject *self, PyObject *args, PyObject *kwargs
 }
 
 static PyMethodDef Methods[] = {
-    {"text_block", mod_text_block, METH_VARARGS | METH_KEYWORDS, "Breaks text into blocks"},
+    {"text_block", (PyCFunction) mod_text_block, METH_VARARGS | METH_KEYWORDS, "Breaks text into blocks"},
     {NULL, NULL, 0, NULL}
 };
 

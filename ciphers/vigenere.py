@@ -3,6 +3,8 @@ from utilities import text_block
 def vigenere(text, keyword, decrypt=False, letters='abcdefghijklmnopqrstuvwxyz'):
     """
     Encrypts or decrypts a text using the Vigenere cipher.
+
+    This is the one that uses the Tabula Recta.
     """
 
     newtext = ""

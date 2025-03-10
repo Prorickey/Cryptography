@@ -69,7 +69,7 @@ static PyObject* caesar_cipher(PyObject *self, PyObject *args, PyObject *kwargs)
 
 // Define module methods
 static PyMethodDef Methods[] = {
-    {"caesar",caesar_cipher, METH_VARARGS | METH_KEYWORDS, "Encrypt and decrypt using the caesar cipher"},
+    {"caesar", (PyCFunction) caesar_cipher, METH_VARARGS | METH_KEYWORDS, "Encrypt and decrypt using the caesar cipher"},
     {NULL, NULL, 0, NULL}
 };
 

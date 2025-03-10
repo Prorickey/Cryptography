@@ -33,7 +33,7 @@ gcd(PyObject *self, PyObject *args)
 
 // Define module methods
 static PyMethodDef Methods[] = {
-    {"gcd", gcd, METH_VARARGS, "Returns the greatest common divisor"},
+    {"gcd", (PyCFunction) gcd, METH_VARARGS, "Returns the greatest common divisor"},
     {NULL, NULL, 0, NULL}
 };
 
