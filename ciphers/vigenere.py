@@ -1,5 +1,6 @@
 from utilities import text_block
 
+
 def vigenere(text, keyword, decrypt=False, letters='abcdefghijklmnopqrstuvwxyz'):
     """
     Encrypts or decrypts a text using the Vigenere cipher.
@@ -11,14 +12,15 @@ def vigenere(text, keyword, decrypt=False, letters='abcdefghijklmnopqrstuvwxyz')
     text = text.lower()
     keyword = keyword.lower()
     keyword_len = len(keyword)
-    if decrypt:
-        for i, l in enumerate(text):
-            newtext += letters[(letters.index(l) - letters.index(keyword[i % keyword_len])) % 26]
-    else:
-        for i, l in enumerate(text):
-            newtext += letters[(letters.index(l) + letters.index(keyword[i % keyword_len])) % 26]
+    for i, l in enumerate(text):
+        keyword_index = letters.index(keyword[i % keyword_len])
+        if decrypt:
+            keyword_index = -keyword_index
+
+        newtext += letters[(letters.index(l) + keyword_index) % 26]
 
     if decrypt:
         return newtext
     else:
         return text_block(newtext.upper())
+
