@@ -9,15 +9,15 @@ def vigenere(text, keyword, decrypt=False, letters='abcdefghijklmnopqrstuvwxyz')
     """
 
     newtext = ""
-    text = text.lower()
+    text = text.lower().replace(" ", "")
     keyword = keyword.lower()
     keyword_len = len(keyword)
     for i, l in enumerate(text):
-        keyword_index = letters.index(keyword[i % keyword_len])
+        keyword_index = letters.find(keyword[i % keyword_len])
         if decrypt:
             keyword_index = -keyword_index
 
-        newtext += letters[(letters.index(l) + keyword_index) % 26]
+        newtext += letters[(letters.find(l) + keyword_index) % 26]
 
     if decrypt:
         return newtext
