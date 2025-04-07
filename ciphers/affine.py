@@ -1,4 +1,6 @@
-from ciphers import caesar, multiplicative
+from ciphers import multiplicative
+from ciphers_pkg.caesar import caesar
+
 
 def affine(text, km, ka, decrypt=False, letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
 	"""

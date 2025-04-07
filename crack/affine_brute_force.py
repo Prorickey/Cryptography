@@ -1,5 +1,5 @@
 from utilities import chi_squared, mod_inverse
-from ciphers import affine
+from ciphers import affine, multiplicative, caesar
 
 
 def brute_force_affine(cipher):
@@ -14,8 +14,10 @@ def brute_force_affine(cipher):
 		if mod_inverse(km, 26) == None:
 			continue
 		for ka in range(26):
-			score = chi_squared(affine(cipher, km, ka, True))
-			print(f"CHI-SCORE({km}, {ka}): {score}")
+			msg = multiplicative(caesar(cipher, ka, True), km, True)
+			score = 50 #chi_squared(msg)
+
+			print(f"CHI-SCORE({km}, {ka}): {score} - {msg}")
 
 			scores.append((km, ka, score))
 

@@ -1,5 +1,6 @@
 from utilities import mod_inverse, text_block
 
+
 def multiplicative(text, key, decrypt=False, letters="abcdefghijklmnopqrstuvwxyz"):
 	"""
 	Encrypts or decrypts a text using the multiplicative cipher.
@@ -15,7 +16,7 @@ def multiplicative(text, key, decrypt=False, letters="abcdefghijklmnopqrstuvwxyz
 			continue
 		num = (letters.find(l) * key) % len(letters)
 
-		cipher += letters[num]
+		newtext += letters[num]
 
 	if decrypt:
 		return newtext
